@@ -15,8 +15,6 @@ function App() {
   const [searchedData, setSearchedData] = useState([]);
   const navigate = useNavigate();
 
-  console.log(searchedData);
-
   const getSearchedCoin = (coin) => {
     setSearchedData(coin);
   };
@@ -44,11 +42,14 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Link to={"/"}>
+        <Header />
+      </Link>
+
       <MainContainer>
         <Search getSearchedCoin={getSearchedCoin} />
         <Routes>
-          <Route path="/" element={<CoinDetails />} />
+          <Route path="/" element={null} />
           <Route path="/:id" element={<CoinDetails />} />
         </Routes>
         {renderCoins}
@@ -63,4 +64,5 @@ export default App;
 const MainContainer = styled.div`
   box-sizing: border-box;
   padding: 1rem;
+  max-width: 1200px;
 `;
