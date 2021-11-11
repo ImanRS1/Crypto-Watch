@@ -12,7 +12,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterContainer = styled.div`
-  background-color: #1f1f1f;
+  background-color: #282c34;
   width: 100vw;
   bottom: 0;
   position: sticky;

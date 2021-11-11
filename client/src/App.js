@@ -46,9 +46,8 @@ function App() {
       <Link to={"/"}>
         <Header />
       </Link>
-
+      <Search getSearchedCoin={getSearchedCoin} />
       <MainContainer>
-        <Search getSearchedCoin={getSearchedCoin} />
         <Routes>
           <Route path="/" element={null} />
           <Route path="/:id" element={<CoinDetails />} />
@@ -64,6 +63,7 @@ function App() {
 export default App;
 
 const MainContainer = styled.div`
+  background-color: #282c34;
   box-sizing: border-box;
   padding: 1rem;
   max-width: 1200px;

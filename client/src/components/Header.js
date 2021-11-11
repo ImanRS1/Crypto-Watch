@@ -12,12 +12,13 @@ const Header = () => {
 export default Header;
 
 const HeaderContainer = styled.div`
-  background-color: #1f1f1f;
+ background-color: #282c34;
   width: 100vw;
 `;
 
 const HeaderTitle = styled.div`
   padding: 1.5rem;
-  font-size: 2rem;
+  font-size: 4rem;
   box-sizing: border-box;
+  text-decoration: underline;
 `;
