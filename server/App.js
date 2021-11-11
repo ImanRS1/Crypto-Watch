@@ -34,11 +34,25 @@ const getCoinDetails = async (req, res) => {
     }
   };
 
+  const getCoinHistory= async (req, res) => {
+    const { id } = req.params;
+    try {
+      const item = await axios.get(
+        `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=30&interval=daily`
+      );
+      res.header("Access-Control-Allow-Origin", "*").status(200).send(item.data);
+    } catch (err) {
+      console.error("GG", err);
+    }
+  };
+
 
 
 app.get("/:id", getCoinDetails);
 
 app.get('/', getAllCoins);
+
+app.get('/:id/history', getCoinHistory);
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);

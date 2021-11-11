@@ -8,6 +8,7 @@ const CoinDetails = () => {
   const { id } = useParams();
   console.log(id);
   const [coinData, setCoinData] = useState();
+  const [coinHistory, setCoinHistory] = useState();
 
   useEffect(() => {
     const fetchCoin = async (id) => {
@@ -16,6 +17,13 @@ const CoinDetails = () => {
       setCoinData(coin.data);
     };
     fetchCoin(id);
+    const fetchHistory = async (id) => {
+      const coin = await axios.get(`http://localhost:5000/${id}/history`);
+      console.log(coin.data.prices);
+      setCoinHistory(coin);
+    };
+
+    fetchHistory(id);
   }, [id]);
 
   if (!coinData) {
@@ -23,61 +31,70 @@ const CoinDetails = () => {
   }
 
   return (
-    <DetailContainer>
-      <div className="first-column">
-        <p id="coin-name"> {coinData.name}</p>
-        <p id="coin-symbol"> {coinData.symbol.toUpperCase()}</p>
-        <img src={coinData.image.large} alt={coinData.image.large} />
-      </div>
-
-      <div className="info">
-        <div className="first-row">
-          <div>
-            <p>All time high:</p> ${coinData.market_data.ath.usd}
-          </div>
-          <div>
-            <p>Change from all time high:</p>
-            {Math.round(coinData.market_data.ath_change_percentage.usd * 100) /
-              100}
-            %
-          </div>
-          <div>
-            <p> Total volume:</p>
-            {(coinData.market_data.total_volume.usd / 1000000000).toFixed(1)}B
-          </div>
-        </div>
-        <div className="second-row">
-          <div>
-            <p>Category:</p>
-            {coinData.categories[0]}
-          </div>
-          <div>
-            <p> Genesis date:</p>
-            {coinData.genesis_date}
-          </div>
-          <div></div>
+    <div>
+      <DetailContainer>
+        <div className="first-column">
+          <p id="coin-name"> {coinData.name}</p>
+          <p id="coin-symbol"> {coinData.symbol.toUpperCase()}</p>
+          <img src={coinData.image.large} alt={coinData.image.large} />
         </div>
 
-        <div className="third-row">
-          <div>
-            <p>Website: </p>
-            <a href={coinData.links.homepage[0]}>
-              {coinData.links.homepage[0]}
+        <div className="info">
+          <div className="first-row">
+            <div>
+              <p>Current price:</p>${coinData.market_data.current_price.usd}
+            </div>
+            <div>
+              <p>All time high:</p> ${coinData.market_data.ath.usd}
+            </div>
+            <div>
+              <p>Change from all time high:</p>
+              {Math.round(
+                coinData.market_data.ath_change_percentage.usd * 100
+              ) / 100}
+              %
+            </div>
+            <div>
+              <p> Total volume:</p>
+              {(coinData.market_data.total_volume.usd / 1000000000).toFixed(1)}B
+            </div>
+          </div>
+          <div className="second-row">
+            <div>
+              <p>Category:</p>
+              {coinData.categories[0]}
+            </div>
+            <div>
+              <p> Genesis date:</p>
+              {coinData.genesis_date}
+            </div>
+            <div></div>
+          </div>
+
+          <div className="third-row">
+            <div>
+              <p>Website: </p>
+              <a href={coinData.links.homepage[0]}>
+                {coinData.links.homepage[0]}
+              </a>
+            </div>
+
+            <a href={coinData.links.subreddit_url}>
+              <img src={redditImg} alt={redditImg} />
             </a>
+
+            <div></div>
           </div>
-
-          <a href={coinData.links.subreddit_url}>
-            <img src={redditImg} alt={redditImg} />
-          </a>
-
-          <div></div>
         </div>
-      </div>
-    </DetailContainer>
+      </DetailContainer>
+      <ChartContainer></ChartContainer>
+    </div>
   );
 };
 
 export default CoinDetails;
+
+const ChartContainer = styled.div``;
 
 const DetailContainer = styled.div`
   width: 50rem;
