@@ -13,6 +13,7 @@ import { Routes, Route, useNavigate, Link } from "react-router-dom";
 function App() {
   const [apiData, setApiData] = useState([]);
   const [searchedData, setSearchedData] = useState([]);
+  const navigate = useNavigate();
 
   console.log(searchedData);
 
@@ -25,6 +26,13 @@ function App() {
       setApiData(fetchedData.data);
     });
   }, []);
+
+  useEffect(() => {
+    if (searchedData.length === 0) {
+      return navigate(`/`);
+    }
+    navigate(`/${searchedData.searched}`);
+  }, [searchedData]);
 
   const renderCoins = apiData.map((coin) => {
     return (

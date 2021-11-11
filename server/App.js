@@ -22,7 +22,7 @@ const getAllCoins = async (req, res) => {
       }
   };
 
-const getCoinDetials = async (req, res) => {
+const getCoinDetails = async (req, res) => {
     const { id } = req.params;
     try {
       const item = await axios.get(
@@ -34,10 +34,11 @@ const getCoinDetials = async (req, res) => {
     }
   };
 
+
+
+app.get("/:id", getCoinDetails);
+
 app.get('/', getAllCoins);
-
-app.get("/:id", getCoinDetials);
-
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`);
