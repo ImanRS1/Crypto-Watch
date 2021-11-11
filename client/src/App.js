@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Coin from "./components/Coin";
 import Search from "./components/Search";
 import CoinDetails from "./components/CoinDetails";
+import CoinList from "./components/CoinList";
 import styled from "styled-components";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -52,6 +53,7 @@ function App() {
           <Route path="/" element={null} />
           <Route path="/:id" element={<CoinDetails />} />
         </Routes>
+        <CoinList />
         {renderCoins}
       </MainContainer>
       <Footer />
