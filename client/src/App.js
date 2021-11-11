@@ -8,6 +8,14 @@ import React, { useState, useEffect } from "react";
 function App() {
   const [apiData, setApiData] = useState([]);
 
+  useEffect(() => {
+    axios.get("http://localhost:5000").then((fetchedData) => {
+      setApiData(fetchedData.data);
+    });
+  }, []);
+
+  console.log(apiData);
+
   return (
     <div className="App">
       <Header />
