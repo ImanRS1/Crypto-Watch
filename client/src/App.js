@@ -1,9 +1,12 @@
 import './App.css';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Coin from "./components/Coin";
 import styled from 'styled-components'
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import React, { useState, useEffect } from "react";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
 function App() {
   const [apiData, setApiData] = useState([]);
@@ -14,14 +17,28 @@ function App() {
     });
   }, []);
 
-  console.log(apiData);
+  const renderCoins = apiData.map((coin) => {
+    return (
+      <div>
+        <Coin coinData={coin} key={uuidv4()}/>
+      </div>
+    );
+  });
 
   return (
     <div className="App">
       <Header />
+      <MainContainer>
+      {renderCoins}
+      </MainContainer>
       <Footer />
     </div>
   );
 }
 
 export default App;
+
+const MainContainer = styled.div`
+  box-sizing: border-box;
+  padding: 1rem;
+`;
