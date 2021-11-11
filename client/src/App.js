@@ -1,9 +1,10 @@
-import './App.css';
+import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Coin from "./components/Coin";
 import Search from "./components/Search";
-import styled from 'styled-components'
+import CoinDetails from "./components/CoinDetails";
+import styled from "styled-components";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import React, { useState, useEffect } from "react";
@@ -28,7 +29,7 @@ function App() {
   const renderCoins = apiData.map((coin) => {
     return (
       <Link to={coin.id} key={uuidv4()}>
-        <Coin coinData={coin} key={uuidv4()}/>
+        <Coin coinData={coin} />
       </Link>
     );
   });
@@ -37,8 +38,12 @@ function App() {
     <div className="App">
       <Header />
       <MainContainer>
-      <Search getSearchedCoin={getSearchedCoin} />
-      {renderCoins}
+        <Search getSearchedCoin={getSearchedCoin} />
+        <Routes>
+          <Route path="/" element={<CoinDetails />} />
+          <Route path="/:id" element={<CoinDetails />} />
+        </Routes>
+        {renderCoins}
       </MainContainer>
       <Footer />
     </div>

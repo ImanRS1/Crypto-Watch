@@ -22,7 +22,21 @@ const getAllCoins = async (req, res) => {
       }
   };
 
+const getCoinDetials = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const item = await axios.get(
+        `https://api.coingecko.com/api/v3/coins/${id}`
+      );
+      res.header("Access-Control-Allow-Origin", "*").status(200).send(item.data);
+    } catch (err) {
+      console.error("GG", err);
+    }
+  };
+
 app.get('/', getAllCoins);
+
+app.get("/:id", getCoinDetials);
 
 
 app.listen(port, () => {
