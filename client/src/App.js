@@ -27,9 +27,9 @@ function App() {
 
   const renderCoins = apiData.map((coin) => {
     return (
-      <div>
+      <Link to={coin.id} key={uuidv4()}>
         <Coin coinData={coin} key={uuidv4()}/>
-      </div>
+      </Link>
     );
   });
 
