@@ -65,4 +65,8 @@ const MainContainer = styled.div`
   box-sizing: border-box;
   padding: 1rem;
   max-width: 1200px;
+  padding-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

@@ -14,6 +14,9 @@ export default Footer;
 const FooterContainer = styled.div`
   background-color: #1f1f1f;
   width: 100vw;
+  bottom: 0;
+  position: sticky;
+  height: 5rem;
 `;
 
 const FooterTitle = styled.div`
