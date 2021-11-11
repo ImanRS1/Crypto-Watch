@@ -64,10 +64,11 @@ export default App;
 
 const MainContainer = styled.div`
   background-color: #282c34;
+  border-radius: 0.8rem;
   box-sizing: border-box;
   padding: 1rem;
   max-width: 1200px;
-  padding-bottom: 5rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;

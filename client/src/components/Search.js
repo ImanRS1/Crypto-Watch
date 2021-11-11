@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 
 const Search = ({ getSearchedCoin }) => {
-
   const handleSubmit = (e) => {
     e.preventDefault();
     getSearchedCoin({
@@ -11,11 +11,17 @@ const Search = ({ getSearchedCoin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" required />
-      <button type="submit">Search</button>
-    </form>
+    <FormContainer>
+      <form onSubmit={handleSubmit}>
+        <input type="text" required />
+        <button type="submit">Search</button>
+      </form>
+    </FormContainer>
   );
 };
 
 export default Search;
+
+const FormContainer = styled.div`
+  margin: 2rem;
+`;

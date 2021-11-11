@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components';
 import { useParams } from 'react-router'
+
 
 const CoinDetails = () => {
     const { id } = useParams(); 
@@ -8,19 +10,26 @@ const CoinDetails = () => {
     const [coinData, setCoinData] = useState();
     const fetchCoin = async id => {
         const coin = await axios.get(`http://localhost:5000/${id}`)
-        console.log(coin.data);
-        setCoinData(coin.data.description.en)
+       const parser = new DOMParser();
+	   const doc = parser.parseFromString(coin.data.description.en, 'text/html');
+       const coinInfoText = doc.body.innerText;
+        setCoinData(coinInfoText)
     }
 
     useEffect(() => {
         fetchCoin(id)
     });
 
+
     return (
-        <div>
+        <DetailContainer>
             {coinData}
-        </div>
+        </DetailContainer>
     )
 }
 
-export default CoinDetails
+export default CoinDetails;
+
+const DetailContainer = styled.div`
+    width: 50rem;
+`
