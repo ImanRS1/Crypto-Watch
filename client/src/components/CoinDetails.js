@@ -172,8 +172,8 @@ const DetailContainer = styled.div`
   }
 
   #githubLogo {
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 2.35rem;
+    height: 2.35rem;
   }
   .third-row div {
     display: flex;
