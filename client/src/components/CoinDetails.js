@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
-import redditImg from "../images/reddit.png";
+import redditImg from "../images/reddit.svg";
+import githubImg from "../images/github.jpg";
+import Chart from "./Chart";
 
 const CoinDetails = () => {
   const { id } = useParams();
@@ -82,6 +84,9 @@ const CoinDetails = () => {
             <a href={coinData.links.subreddit_url}>
               <img src={redditImg} alt={redditImg} />
             </a>
+            <a href={coinData.links.repos_url.github[0]}>
+              <img id="githubLogo" src={githubImg} alt={githubImg} />
+            </a>
 
             <div></div>
           </div>
@@ -160,10 +165,15 @@ const DetailContainer = styled.div`
     align-items: center;
     justify-content: space-evenly;
     img {
-      height: 3rem;
-      width: 3rem;
+      height: 5rem;
+      width: 5rem;
       filter: grayscale(1);
     }
+  }
+
+  #githubLogo {
+    width: 2.6rem;
+    height: 2.6rem;
   }
   .third-row div {
     display: flex;
