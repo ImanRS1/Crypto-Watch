@@ -15,13 +15,13 @@ const CoinDetails = () => {
   useEffect(() => {
     const fetchCoin = async (id) => {
       const coin = await axios.get(`http://localhost:5000/${id}`);
-      console.log(coin.data);
+     // console.log(coin.data);
       setCoinData(coin.data);
     };
     fetchCoin(id);
     const fetchHistory = async (id) => {
       const coin = await axios.get(`http://localhost:5000/${id}/history`);
-      console.log(coin.data.prices);
+     // console.log(coin.data.prices);
       setCoinHistory(coin);
     };
 
@@ -88,7 +88,9 @@ const CoinDetails = () => {
               <img id="githubLogo" src={githubImg} alt={githubImg} />
             </a>
 
-            <div></div>
+            <div>
+              <Chart coinHistory={coinHistory}/>
+            </div>
           </div>
         </div>
       </DetailContainer>

@@ -1,6 +1,8 @@
 import React from 'react'
 
-const Chart = () => {
+const Chart = ({coinHistory}) => {
+    const initData = coinHistory.data.prices;
+    
     return (
         <div>
             
