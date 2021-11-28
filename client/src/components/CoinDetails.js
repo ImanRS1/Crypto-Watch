@@ -10,7 +10,7 @@ const CoinDetails = () => {
   const { id } = useParams();
   console.log(id);
   const [coinData, setCoinData] = useState();
-  const [coinHistory, setCoinHistory] = useState();
+  const [coinHistory, setCoinHistory] = useState(null);
 
   useEffect(() => {
     const fetchCoin = async (id) => {
@@ -89,7 +89,13 @@ const CoinDetails = () => {
             </a>
 
             <div>
-              <Chart coinHistory={coinHistory}/>
+
+            {coinHistory !== null ? (
+         <Chart coinHistory={coinHistory}/>
+        ) : (
+          ""
+        )}
+              
             </div>
           </div>
         </div>
